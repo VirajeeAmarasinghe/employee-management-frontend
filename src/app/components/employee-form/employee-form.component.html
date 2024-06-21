@@ -1,0 +1,122 @@
+<div>
+  <h2>Employee Profile</h2>
+</div>
+
+<form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <h3>Profile Details</h3>
+    <div>
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        [(ngModel)]="employee.firstName"
+        required
+      />
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        [(ngModel)]="employee.lastName"
+        required
+      />
+    </div>
+    <div>
+      <label for="birthDate">Date of Birth:</label>
+      <input
+        type="date"
+        id="birthDate"
+        name="birthDate"
+        [(ngModel)]="employee.birthDate"
+        required
+      />
+    </div>
+    <div>
+      <label for="hireDate">Hire Date:</label>
+      <input
+        type="date"
+        id="hireDate"
+        name="hireDate"
+        [(ngModel)]="employee.hireDate"
+        required
+      />
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" [(ngModel)]="employee.gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <h3>Salary Details</h3>
+    <div *ngFor="let salary of employee.salaries; let i = index">
+      <label>Amount:</label>
+      <input
+        type="number"
+        [(ngModel)]="salary.amount"
+        name="salaries[{{ i }}].amount"
+        step="0.01"
+        required
+      />
+      <label>From Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="salary.fromDate"
+        name="salaries[{{ i }}].fromDate"
+        required
+      />
+      <label>To Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="salary.toDate"
+        name="salaries[{{ i }}].toDate"
+        required
+      />
+      <button type="button" (click)="removeSalary(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addSalary()">Add Salary</button>
+  </div>
+
+  <div>
+    <h3>Designation Details</h3>
+    <div *ngFor="let title of employee.titles; let i = index">
+      <label>Title:</label>
+      <input
+        type="text"
+        [(ngModel)]="title.title"
+        name="titles[{{ i }}].title"
+        required
+      />
+      <label>From Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="title.fromDate"
+        name="titles[{{ i }}].fromDate"
+        required
+      />
+      <label>To Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="title.toDate"
+        name="titles[{{ i }}].toDate"
+        required
+      />
+      <button type="button" (click)="removeTitle(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addTitle()">Add Title</button>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="employeeForm.invalid">
+      Add Employee
+    </button>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

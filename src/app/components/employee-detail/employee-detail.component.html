@@ -1,0 +1,62 @@
+<div>
+  <h2>Employee Profile</h2>
+  <a routerLink="/edit/{{ employee.id }}">Edit</a>
+</div>
+
+<div>
+  <h3>Profile Details</h3>
+  <ul>
+    <li>
+      <strong>Employee Name:</strong> {{ employee.firstName }}
+      {{ employee.lastName }}
+    </li>
+    <li>
+      <strong>Date of Birth:</strong>
+      {{ employee.birthDate | date : "dd-MM-yyyy" }}
+    </li>
+    <li><strong>Gender:</strong> {{ employee.gender }}</li>
+    <li>
+      <strong>Hire Date:</strong> {{ employee.hireDate | date : "dd-MM-yyyy" }}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h3>Salary Details</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>From Date</th>
+        <th>To Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salary of employee.salaries">
+        <td>{{ salary.amount }}</td>
+        <td>{{ salary.fromDate | date : "dd-MM-yyyy" }}</td>
+        <td>{{ salary.toDate | date : "dd-MM-yyyy" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>Designation Details</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>From Date</th>
+        <th>To Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let title of employee.titles">
+        <td>{{ title.title }}</td>
+        <td>{{ title.fromDate | date : "dd-MM-yyyy" }}</td>
+        <td>{{ title.toDate | date : "dd-MM-yyyy" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
